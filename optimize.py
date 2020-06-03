@@ -29,10 +29,12 @@ def process(cost, ActCost, Units, Country, Hour):
     global TempMachineList
     global MachineList
     ActualCost = ActCost
+    #Returns the list of all possible machines to opererate on a given unit
     List = get_list(Units)
     for i in List:
       if Country[i] != "null":
           NewCost, rem, Value= get_cost(cost, i, Units, Country, Hour)
+          #rem is the remaining units - if it is not zero again the same process is repeated to find the machines which can opertae on the remaining units
           if rem == 0:
             if NewCost < ActualCost or ActualCost == 0:
                 ActualCost = NewCost
@@ -47,12 +49,16 @@ def process(cost, ActCost, Units, Country, Hour):
 
 if len(InputList) == 5: 
     [TotalUnits, _, _, Hour, _] = InputList
+    #to get machine details for NewYork
     process(0,0,int(TotalUnits), NewYork, int(Hour))
     NewYorkRes = {"region":"New York","total_cost":"$"+str(ActualCost),"machines": MachineList}
+    #to get machine details for India
     process(0,0,int(TotalUnits), India, int(Hour))
     IndiaRes = {"region":"India","total_cost":"$"+str(ActualCost),"machines": MachineList}
+    #to get machine details for China
     process(0,0,int(TotalUnits), China, int(Hour))
     ChinaRes = {"region":"China","total_cost":"$"+str(ActualCost),"machines": MachineList}
+    #Printing the final output
     print({"Output":[NewYorkRes, IndiaRes, ChinaRes]})
 else:
     print("Incorrect Input format")
