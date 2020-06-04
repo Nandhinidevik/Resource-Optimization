@@ -5,7 +5,7 @@ class test_optimization(unittest.TestCase):
     def testoptimization(self):
         result = optimize.optimize("1150 units for 1 hour")
         print(result)
-        ExpectedOutput = {'Output': [{'region': 'New York', 'total_cost': '$10150', 'machines': [('XLarge', 1), ('Large', 1)]}, {'region': 'India', 'total_cost': '$9520', 'machines': [('8XLarge', 7), ('Large', 3)]}, {'region': 'China', 'total_cost': '$8570', 'machines': [('XLarge', 1), ('Large', 1)]}]}                                                                                                                                     
+        ExpectedOutput = {'Output': [{'region': 'New York', 'total_cost': '$10150', 'machines': [('8XLarge', 7), ('XLarge', 1), ('Large', 1)]}, {'region': 'India', 'total_cost': '$9520', 'machines': [('8XLarge', 7), ('Large', 3)]}, {'region': 'China', 'total_cost': '$8570', 'machines': [('8XLarge', 7), ('XLarge', 1), ('Large', 1)]}]}                                                                                                                                     
         print(ExpectedOutput)
         self.assertEqual(result, ExpectedOutput)
     #to check the error message when incorrect input is given
